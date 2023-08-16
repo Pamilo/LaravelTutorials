@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 // el name es como lo vamos a "nombrar" en el codigo para llamar la pagina
 Route::get('/','App\Http\Controllers\HomeController@index')->name("home.index");
 Route::get('/contact',function(){return view('home.contact');})->name("home.contact");
-Route::get('/about', function () {
+Route::get('/about', function () { // esto esta mal pues no no pasa por un controlador
     $data1 = "About us - Online Store";
     $data2 = "About us";
     $description = "This is an about page ...Hola profe :)";
@@ -36,3 +36,4 @@ Route::get('/products/create', 'App\Http\Controllers\ProductController@create')-
 Route::post('/products/save', 'App\Http\Controllers\ProductController@save')->name("product.save");
 //-------------------------------------------------------------------
 Route::get('/products/{id}', 'App\Http\Controllers\ProductController@show')->name("product.show");
+

@@ -1,3 +1,5 @@
+@extends('layouts.app')
+@section('title', $viewData["title"])
 @section('subtitle', $viewData["subtitle"])
 @section('content')
 <div class="card mb-3">
@@ -7,10 +9,23 @@
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">
-           {{ $viewData["product"]["name"] }}
-        </h5>
-        <p class="card-text">{{ $viewData["product"]["description"] }}</p>
+        @if ($viewData["product"]["price"] <= 100)
+          <h5 class="card-title">
+            {{ $viewData["product"]["name"] }}
+          </h5>
+        @else
+          <h5 class="card-title" style="color:#ff0000">
+            {{ $viewData["product"]["name"] }}
+          </h5>
+        @endif
+        <p class="card-text">
+          {{ $viewData["product"]["price"] }} USD
+        </p>
+        @foreach($viewData["product"]->comments as $comment)
+          - {{ $comment->getDescription() }}<br />
+        @endforeach
+
+        <!--<p class="card-text">{{ $viewData["product"]["description"] }}</p>-->
       </div>
     </div>
   </div>
