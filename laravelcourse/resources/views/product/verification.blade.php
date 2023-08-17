@@ -1,4 +1,7 @@
 @extends('layouts.app')
-@section("title", $viewData["title"])
+@section("title", 'Verificacion  - Online Store')
 @section('content')
-    <h1>Product created</h1>
+    <div class="text-center">
+        <h1 style="color:#00ff00">Product created</h1>
+    </div>
+@endsection

@@ -4,6 +4,7 @@
     use Illuminate\Http\Request;
     use Illuminate\View\View;
     use App\Models\Product;
+    use Illuminate\Routing\Redirector;
 
     class ProductController extends Controller{
         /*public static $products = [
@@ -25,10 +26,15 @@
 
         public function show(string $id){
             $viewData = [];
-            $product = Product::findOrFail($id);
+            try{
+                $product = Product::findOrFail($id);
+            }catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
+                return redirect()->route("home.index");
+            }
             $viewData["title"] = $product["name"]." - Online Store";
             $viewData["subtitle"] =  $product["name"]." - Product information";
             $viewData["product"] = $product;
+            
             return view('product.show')->with("viewData", $viewData);    
         }
 
@@ -42,7 +48,11 @@
             /*$request->validate(["name"=>"required","price"=>"required|numeric|gt:0"]); // esto hay que moverlo
             dd($request->all());*/
             Product::create($request->only(['name','price']));
-            return back();
+            return view('product.verification');
             //aqui regresar la vista de verificacion
+        }
+        
+        public function verification(): View{
+            return view('home.verification');
         }
     }
