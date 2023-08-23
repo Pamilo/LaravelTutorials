@@ -31,8 +31,8 @@
             }catch(\Illuminate\Database\Eloquent\ModelNotFoundException $e){
                 return redirect()->route("home.index");
             }
-            $viewData["title"] = $product["name"]." - Online Store";
-            $viewData["subtitle"] =  $product["name"]." - Product information";
+            $viewData["title"] = $product->getName()." - Online Store";
+            $viewData["subtitle"] =  $product->getName()." - Product information";
             $viewData["product"] = $product;
             
             return view('product.show')->with("viewData", $viewData);    
@@ -47,6 +47,7 @@
         public function save(Request $request){ // falta tipo de retorno // request es para recibir datos de formulario
             /*$request->validate(["name"=>"required","price"=>"required|numeric|gt:0"]); // esto hay que moverlo
             dd($request->all());*/
+            Product::validate($request);
             Product::create($request->only(['name','price']));
             return view('product.verification');
             //aqui regresar la vista de verificacion

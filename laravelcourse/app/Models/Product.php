@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Comment;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 
 
 class Product extends Model{
 
-    use HasFactory;
+    
     /**
 
     * PRODUCT ATTRIBUTES
@@ -24,6 +25,9 @@ class Product extends Model{
 
     * $this->comments - Comment[] - contains the associated comments
 
+    *$this->attributes['created_at'] - datetime - the time it was created
+    *$this->attributes['updated_at'] - datetime - the time it was updated for the last time
+
     */
 
     protected $fillable = ['name','price'];
@@ -32,9 +36,9 @@ class Product extends Model{
         return $this->attributes['id'];
     }
 
-    public function setId($id) : void{
+    /*public function setId($id) : void{
         $this->attributes['id'] = $id;
-    }
+    }*/
 
     public function getName(): string{
         return $this->attributes['name'];
@@ -51,6 +55,11 @@ class Product extends Model{
     public function setPrice($price) : void{
         $this->attributes['price'] = $price;
     }
+
+//--------------------------------------------------------------
+public static function validate(Request $request) {
+    $request->validate(["name"=>"required","price"=>"required|numeric|gt:0"]);
+}
 
 //-------------------------------------------------------------
     public function comments(): HasMany

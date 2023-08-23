@@ -9,13 +9,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Comment extends Model
 {
-    use HasFactory;
+    
 
     /**
      * PRODUCT ATTRIBUTES
      * $this->attributes['id'] - int - contains the product primary key (id)
      * $this->attributes['description'] - string - contains the comment description
      * $this->product - Product - contains the associated Product
+     * $this->attributes['created_at'] - datetime - the time it was created
+     * $this->attributes['updated_at'] - datetime - the time it was updated for the last time
     */
 
     protected $fillable = ['description', 'product_id'];
@@ -24,9 +26,9 @@ class Comment extends Model
         return $this->attributes['id'];
     }
 
-    public function setId(int $id): void{
+    /*public function setId(int $id): void{
         $this->attributes['id'] = $id;
-    }
+    }*/
 
     public function getDescription(): string{
         return $this->attributes['description'];
