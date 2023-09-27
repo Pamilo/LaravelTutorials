@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class CartController extends Controller{
-
+// notar todo lo de products sobra para el proyecto
     public function index(Request $request): View{
         //lista ejemplo de productos
         $products = [];//esta sera nuestra DB

@@ -23,6 +23,14 @@
             $viewData["products"] = Product::all();
             return view('product.index')->with("viewData", $viewData);
         }
+        
+        public function delete(string $id)//RedirectResponse
+        {
+            $review = Review::findOrFail($id);
+            $review->delete(); // todo esto deberia ser Review::destroy($id)
+            
+            return redirect()->route("review.index");
+        }
 
         public function show(string $id){
             $viewData = [];

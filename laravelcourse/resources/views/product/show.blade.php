@@ -21,6 +21,7 @@
         <p class="card-text">
           {{ $viewData["product"]->getPrice() }} USD
         </p>
+        <a href="{{ route('review.delete', $viewData['id'])}}" class="btn bg-primary text-white">DELETE</a>
         @foreach($viewData["product"]->comments as $comment)
           - {{ $comment->getDescription() }}<br />
         @endforeach

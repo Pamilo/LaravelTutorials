@@ -28,6 +28,7 @@ Route::post('/products/save', 'App\Http\Controllers\ProductController@save')->na
 Route::get('/products/save', 'App\Http\Controllers\ProductController@verification')->name("product.verification");
 //-------------------------------------------------------------------
 Route::get('/products/{id}', 'App\Http\Controllers\ProductController@show')->name("product.show");
+Route::get('/reviews/delete/{id}', 'App\Http\Controllers\ReviewController@delete')->name("review.delete");
 //-----------------------------------------------------------------------------------------------
 Route::get('/cart', 'App\Http\Controllers\CartController@index')->name("cart.index");
 Route::get('/cart/add/{id}', 'App\Http\Controllers\CartController@add')->name("cart.add");
