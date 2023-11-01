@@ -21,7 +21,7 @@ steps:
 - name: Copy Project Code
 
 uses: actions/checkout@v3
-- name: Setup PHP
+- name: Setup PHP 
 
 uses: shivammathur/setup-php@v2
 
