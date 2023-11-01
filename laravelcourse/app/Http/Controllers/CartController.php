@@ -6,7 +6,11 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class CartController extends Controller{
+class CartController extends Controller
+
+
+
+{
 // notar todo lo de products sobra para el proyecto
     public function index(Request $request): View{
         //lista ejemplo de productos
@@ -26,6 +30,9 @@ class CartController extends Controller{
                     $cartProducts[$key] = $product;
                 }
             }
+
+
+            
         }
 
         $viewData = [];
